@@ -33,7 +33,7 @@ module.exports = ({ env }) => {
     console.log('🏗️ This will be replaced by environment variables at runtime');
     
     // Use your actual Supabase connection for build - environment vars will override at runtime
-    const buildTimeUrl = 'postgresql://postgres.dsnoxaolyvopzyrjzukb:Wus7V$@cuYgv@!d@db.dsnoxaolyvopzyrjzukb.supabase.co:5432/postgres';
+    const buildTimeUrl = 'postgresql://postgres.dsnoxaolyvopzyrjzukb:Wus7VcuYgvd@db.dsnoxaolyvopzyrjzukb.supabase.co:5432/postgres';
     const config = parse(buildTimeUrl);
     
     return {
