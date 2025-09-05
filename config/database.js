@@ -28,23 +28,26 @@ module.exports = ({ env }) => {
   
   if (!databaseUrl) {
     // For Strapi Cloud: Environment variables might only be available at runtime, not build time
-    // Use a default connection during build, real connection at runtime
-    console.warn('⚠️ No database URL found during build. Using build-time fallback.');
-    console.log('🏗️ Build stage detected - environment variables will be available at runtime');
+    // Use hardcoded connection string during build that will be overridden at runtime
+    console.warn('⚠️ No database URL found during build. Using hardcoded build-time connection.');
+    console.log('🏗️ This will be replaced by environment variables at runtime');
     
-    // Minimal connection for build stage - will be replaced at runtime
+    // Use your actual Supabase connection for build - environment vars will override at runtime
+    const buildTimeUrl = 'postgresql://postgres.dsnoxaolyvopzyrjzukb:Wus7V%24%40cuYgv%40%21d@db.dsnoxaolyvopzyrjzukb.supabase.co:6543/postgres';
+    const config = parse(buildTimeUrl);
+    
     return {
       connection: {
         client: 'postgres',
         connection: {
-          host: 'localhost',
-          port: 5432,
-          database: 'strapi_build',
-          user: 'strapi',
-          password: 'strapi',
+          connectionString: buildTimeUrl,
+          ssl: { rejectUnauthorized: false },
+          schema: 'public',
         },
+        pool: { min: 2, max: 10 },
         useNullAsDefault: true,
         prefix: 'strapi_',
+        acquireConnectionTimeout: 60000,
       },
     };
   }
