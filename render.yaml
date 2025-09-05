@@ -8,10 +8,12 @@ services:
     envVars:
       - key: NODE_ENV
         value: production
+      - key: DATABASE_URL
+        value: postgresql://postgres.dsnoxaolyvopzyrjzukb:Wus7VcuYgvd@aws-0-us-west-1.pooler.supabase.com:5432/postgres?schema=public&pgbouncer=true&connection_limit=1
       - key: DATABASE_CLIENT
         value: postgres
       - key: DATABASE_HOST
-        value: db.dsnoxaolyvopzyrjzukb.supabase.co
+        value: aws-0-us-west-1.pooler.supabase.com
       - key: DATABASE_PORT
         value: "5432"
       - key: DATABASE_NAME
@@ -19,7 +21,7 @@ services:
       - key: DATABASE_USERNAME
         value: postgres.dsnoxaolyvopzyrjzukb
       - key: DATABASE_PASSWORD
-        sync: false  # Will be set manually in Render dashboard for security
+        value: Wus7VcuYgvd
       - key: DATABASE_SSL
         value: "true"
       - key: DATABASE_SSL_REJECT_UNAUTHORIZED
@@ -35,7 +37,7 @@ services:
       - key: DATABASE_CONNECTION_TIMEOUT
         value: "60000"
       - key: APP_KEYS
-        generateValue: true  # Render will generate secure keys
+        generateValue: true
       - key: API_TOKEN_SALT
         generateValue: true
       - key: ADMIN_JWT_SECRET
