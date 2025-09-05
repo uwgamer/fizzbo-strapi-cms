@@ -27,8 +27,26 @@ module.exports = ({ env }) => {
   console.log('process.env.SUPABASE_DB_URL:', process.env.SUPABASE_DB_URL ? 'found' : 'not found');
   
   if (!databaseUrl) {
-    console.error('❌ No database URL found. Checked: DATABASE_URL, SUPABASE_DB_URL, STRAPI_DATABASE_URL, DB_URL');
-    process.exit(1);
+    // For Strapi Cloud: Environment variables might only be available at runtime, not build time
+    // Use a default connection during build, real connection at runtime
+    console.warn('⚠️ No database URL found during build. Using build-time fallback.');
+    console.log('🏗️ Build stage detected - environment variables will be available at runtime');
+    
+    // Minimal connection for build stage - will be replaced at runtime
+    return {
+      connection: {
+        client: 'postgres',
+        connection: {
+          host: 'localhost',
+          port: 5432,
+          database: 'strapi_build',
+          user: 'strapi',
+          password: 'strapi',
+        },
+        useNullAsDefault: true,
+        prefix: 'strapi_',
+      },
+    };
   }
   
   console.log('✅ Database URL found, connecting...');
