@@ -13,6 +13,11 @@ module.exports = ({ env }) => {
   // Check for individual environment variables (Strapi Cloud official pattern)
   const hasIndividualVars = env('DATABASE_HOST') || env('DATABASE_NAME');
   
+  console.log('🔍 Environment variable check:');
+  console.log('DATABASE_HOST:', env('DATABASE_HOST', 'not-set'));
+  console.log('DATABASE_URL:', env('DATABASE_URL', 'not-set'));
+  console.log('hasIndividualVars:', hasIndividualVars);
+  
   if (hasIndividualVars) {
     console.log('✅ Individual database environment variables found');
     console.log('🔌 Database Host:', env('DATABASE_HOST', 'not-set'));

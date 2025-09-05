@@ -8,7 +8,9 @@ services:
     envVars:
       - key: NODE_ENV
         value: production
-      - key: DATABASE_URL
+      - key: DATABASE_URL  
+        value: postgresql://postgres.dsnoxaolyvopzyrjzukb:Wus7VcuYgvd@aws-1-us-east-2.pooler.supabase.com:6543/postgres
+      - key: SUPABASE_DB_URL
         value: postgresql://postgres.dsnoxaolyvopzyrjzukb:Wus7VcuYgvd@aws-1-us-east-2.pooler.supabase.com:6543/postgres
       - key: DATABASE_CLIENT
         value: postgres
