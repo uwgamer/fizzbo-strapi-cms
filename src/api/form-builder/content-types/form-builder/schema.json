@@ -1,0 +1,62 @@
+{
+  "kind": "collectionType",
+  "collectionName": "form_builders",
+  "info": {
+    "singularName": "form-builder",
+    "pluralName": "form-builders",
+    "displayName": "Form Builder",
+    "description": "Dynamic form creation and management with lead integration"
+  },
+  "options": {
+    "draftAndPublish": false,
+    "comment": ""
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "fields": {
+      "type": "json",
+      "required": true
+    },
+    "settings": {
+      "type": "json"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    },
+    "followUpBossIntegration": {
+      "type": "boolean",
+      "default": false
+    },
+    "formType": {
+      "type": "enumeration",
+      "enum": [
+        "contact",
+        "lead_capture",
+        "property_inquiry",
+        "showing_request",
+        "custom"
+      ],
+      "default": "contact"
+    },
+    "submissionCount": {
+      "type": "integer",
+      "default": 0
+    },
+    "lastSubmission": {
+      "type": "datetime"
+    },
+    "createdBy": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "admin::user"
+    }
+  }
+}

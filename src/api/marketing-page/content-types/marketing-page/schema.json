@@ -1,0 +1,56 @@
+{
+  "kind": "collectionType",
+  "collectionName": "marketing_pages",
+  "info": {
+    "singularName": "marketing-page",
+    "pluralName": "marketing-pages",
+    "displayName": "Marketing Page",
+    "description": "Dynamic marketing and landing pages with property integration"
+  },
+  "options": {
+    "draftAndPublish": true,
+    "comment": ""
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "content": {
+      "type": "richtext",
+      "required": true
+    },
+    "seo": {
+      "type": "json"
+    },
+    "propertyIntegration": {
+      "type": "boolean",
+      "default": false
+    },
+    "propertyFilters": {
+      "type": "json"
+    },
+    "targetRegions": {
+      "type": "json"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    },
+    "viewCount": {
+      "type": "integer",
+      "default": 0
+    },
+    "lastModifiedBy": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "admin::user"
+    }
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "kind": "collectionType",
+  "collectionName": "campaign_workflows",
+  "info": {
+    "singularName": "campaign-workflow",
+    "pluralName": "campaign-workflows",
+    "displayName": "Campaign Workflow",
+    "description": "Marketing automation and API orchestration workflows"
+  },
+  "options": {
+    "draftAndPublish": false,
+    "comment": ""
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "triggers": {
+      "type": "json",
+      "required": true
+    },
+    "actions": {
+      "type": "json",
+      "required": true
+    },
+    "conditions": {
+      "type": "json"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    },
+    "apiIntegrations": {
+      "type": "json"
+    },
+    "workflowType": {
+      "type": "enumeration",
+      "enum": [
+        "lead_nurturing",
+        "property_alerts",
+        "follow_up",
+        "api_orchestration",
+        "custom"
+      ],
+      "default": "custom"
+    },
+    "executionCount": {
+      "type": "integer",
+      "default": 0
+    },
+    "lastExecuted": {
+      "type": "datetime"
+    },
+    "successRate": {
+      "type": "decimal",
+      "default": 0
+    },
+    "activatedAt": {
+      "type": "datetime"
+    },
+    "deactivatedAt": {
+      "type": "datetime"
+    },
+    "createdBy": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "admin::user"
+    }
+  }
+}

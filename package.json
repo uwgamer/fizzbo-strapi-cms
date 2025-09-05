@@ -1,0 +1,34 @@
+{
+  "name": "fizzbo-strapi-cms",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Fizzbo CMS powered by Strapi with shared Supabase PostgreSQL integration",
+  "scripts": {
+    "build": "strapi build",
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "strapi": "strapi",
+    "postinstall": "mkdir -p public public/uploads .tmp && echo 'Directories created during build' > public/build-info.txt && echo 'Upload directory ready' > public/uploads/.gitkeep"
+  },
+  "dependencies": {
+    "@strapi/strapi": "4.25.9",
+    "@strapi/plugin-users-permissions": "4.25.9",
+    "@strapi/plugin-i18n": "4.25.9",
+    "@strapi/plugin-cloud": "4.25.9",
+    "@strapi/plugin-documentation": "4.25.9",
+    "@strapi/provider-upload-local": "4.25.9",
+    "pg": "^8.11.3",
+    "pg-connection-string": "^2.6.2",
+    "@supabase/supabase-js": "^2.38.0",
+    "jsonwebtoken": "^9.0.2"
+  },
+  "devDependencies": {},
+  "author": "Fizzbo Team",
+  "strapi": {
+    "uuid": "fizzbo-cms-uuid"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  }
+}
