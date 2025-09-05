@@ -9,13 +9,29 @@ const { parse } = require('pg-connection-string');
  */
 
 module.exports = ({ env }) => {
-  // Parse database connection string from environment
-  const databaseUrl = env('DATABASE_URL') || env('SUPABASE_DB_URL');
+  // Parse database connection string from environment - try multiple patterns
+  const databaseUrl = 
+    env('DATABASE_URL') || 
+    env('SUPABASE_DB_URL') ||
+    env('STRAPI_DATABASE_URL') ||
+    env('DB_URL') ||
+    process.env.DATABASE_URL ||
+    process.env.SUPABASE_DB_URL ||
+    process.env.STRAPI_DATABASE_URL ||
+    process.env.DB_URL;
+  
+  console.log('🔍 Environment variable check:');
+  console.log('DATABASE_URL:', env('DATABASE_URL') ? 'found' : 'not found');
+  console.log('SUPABASE_DB_URL:', env('SUPABASE_DB_URL') ? 'found' : 'not found');
+  console.log('process.env.DATABASE_URL:', process.env.DATABASE_URL ? 'found' : 'not found');
+  console.log('process.env.SUPABASE_DB_URL:', process.env.SUPABASE_DB_URL ? 'found' : 'not found');
   
   if (!databaseUrl) {
-    console.error('❌ DATABASE_URL or SUPABASE_DB_URL environment variable is required');
+    console.error('❌ No database URL found. Checked: DATABASE_URL, SUPABASE_DB_URL, STRAPI_DATABASE_URL, DB_URL');
     process.exit(1);
   }
+  
+  console.log('✅ Database URL found, connecting...');
 
   const config = parse(databaseUrl);
 
